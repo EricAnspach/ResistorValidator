@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         String[] stripes = { "red", "green", "yellow", "black", "brown"};
-        boolean inRange = IsInRange(stripes, 250);
+        boolean inRange = IsInRange(stripes, 254);
 
         System.out.println(inRange);
     }
@@ -19,7 +19,7 @@ public class Main {
         double multiplier = 1;
 
         if(stripeColor.length == 5) {
-            // System.out.println("length is 5");
+            System.out.println("length is 5");
             double hundredsDigit = translateColor(stripeColor[0]);
             tensDigit = translateColor(stripeColor[1]);
             onesDigit = translateColor(stripeColor[2]);
@@ -31,10 +31,10 @@ public class Main {
             onesDigit = translateColor(stripeColor[1]);
             decimalMultiplier = translateColor(stripeColor[2]);
             if (stripeColor.length == 4) {
-                // System.out.println("length is 4");
+                System.out.println("length is 4");
                 tolerance = getTolerance(stripeColor[3]);
             } else {
-                // System.out.println("length is 3");
+                System.out.println("length is 3");
                 tolerance = 20;
             }
         }
@@ -45,22 +45,28 @@ public class Main {
         int resistanceDigits = (int)resistanceDouble;
         tolerance = tolerance/100;
 
-        for (int i = 0; i < decimalMultiplier; i++) {
-            multiplier *=10;
+        if (0 < decimalMultiplier && decimalMultiplier <1) {
+            multiplier *= decimalMultiplier;
+        } else {
+            for (int i = 0; i < decimalMultiplier; i++) {
+                multiplier *=10;
+            }
         }
+
+
 
         double resistance = resistanceDigits*multiplier;
 
-//        System.out.println("Resistance = " + resistance);
-//        System.out.println(decimalMultiplier);
-//        System.out.println(tolerance);
+        System.out.println("Resistance = " + resistance);
+        System.out.println("Decimal Multiplier = " + decimalMultiplier);
+        System.out.println("Tolerance = " + tolerance);
 
         // Compare observed value to valid range
         double lowerRange = resistance*(1 - tolerance);
         double upperRange = resistance*(1 + tolerance);
 
-//        System.out.println(lowerRange);
-//        System.out.println(upperRange);
+        System.out.println("Lower Range = " + lowerRange);
+        System.out.println("Upper Range = " + upperRange);
 
         if (lowerRange < measuredOhms && measuredOhms < upperRange) {
             return true;

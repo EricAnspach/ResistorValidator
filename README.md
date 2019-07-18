@@ -2,6 +2,8 @@
 
 From the C3: Code, Craft, Community Meetup 7/17/19
 
+https://github.com/Ingage-Meetup/ResistorValidator
+
 This is a coding exercise to develop a program that validates a resistor's tolerances.
 
 From the documentation provided for the challenge:
